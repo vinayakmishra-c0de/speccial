@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 18th Birthday, Kangaroo! 🦘</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-black: #0D0D0D;
+            --card-black: #1A1A1A;
+            --light-yellow: #FEF9E7;
+            --warm-brown: #5C4033;
+            --gold: #D4AF37;
+            --accent-yellow: #F4D03F;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--light-yellow);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Ambient Background Particles */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Permanent Relationship Tracker */
+        #relationship-tracker {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 26, 26, 0.85);
+            border: 1px solid var(--warm-brown);
+            padding: 12px 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            text-align: right;
+            transition: all 0.5s ease;
+        }
+        #relationship-tracker h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--accent-yellow);
+            margin-bottom: 4px;
+        }
+        #relationship-counter {
+            font-family: monospace;
+            font-size: 14px;
+            color: var(--light-yellow);
+        }
+
+        /* App Containers */
+        .stage {
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            z-index: 5;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s ease;
+        }
+
+        .hidden {
+            display: none !important;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        /* Buttons Styling */
+        .btn-premium {
+            background: linear-gradient(135deg, var(--warm-brown), #3D2B22);
+            color: var(--light-yellow);
+            border: 1px solid var(--gold);
+            padding: 14px 32px;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(212,175,55,0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 25px;
+            outline: none;
+        }
+        .btn-premium:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+            background: linear-gradient(135deg, #6E4D3E, var(--warm-brown));
+        }
+
+        /* Stage 1: Initial Birthday Countdown */
+        #stage-countdown h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--light-yellow);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .countdown-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .countdown-box {
+            background: var(--card-black);
+            border: 1px solid rgba(214,175,87,0.3);
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 100px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .countdown-box span {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 600;
+            font-family: monospace;
+            color: var(--accent-yellow);
+        }
+        .countdown-box label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+        }
+
+        /* Stage 2: Birthday Celebration Reveal & Cake */
+        #hbd-announcement {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5rem;
+            color: var(--accent-yellow);
+            text-align: center;
+            text-shadow: 0 0 20px rgba(244,208,63,0.4);
+            animation: floatingText 3s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+        @keyframes floatingText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Cake Display Area */
+        .cake-wrapper {
+            position: relative;
+            margin: 40px 0;
+            width: 250px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .table-surface {
+            position: absolute;
+            bottom: 10px;
+            width: 320px;
+            height: 20px;
+            background: linear-gradient(90deg, #422E25, #2C1E18);
+            border-bottom: 4px solid var(--warm-brown);
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+        }
+        .cake-3d {
+            position: absolute;
+            bottom: 25px;
+            width: 180px;
+            height: 120px;
+            background: linear-gradient(to bottom, #4A2E2B, #2E1A1C);
+            border-radius: 20px 20px 10px 10px;
+            box-shadow: inset 0 8px 10px rgba(255,255,255,0.15), 0 15px 25px rgba(0,0,0,0.6);
+            transition: all 0.8s ease;
+        }
+        .cake-3d::before {
+            content: '';
+            position: absolute;
+            top: 35px; left: 0; width: 100%; height: 15px;
+            background: #EED6B9; /* Cream layer */
+            box-shadow: 0 30px 0 #EED6B9;
+        }
+        .cake-3d::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 25px;
+            background: #361F1D; /* Dark chocolate dripping */
+            border-radius: 20px 20px 0 0;
+        }
+        .candle {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 40px;
+            background: linear-gradient(to right, var(--light-yellow), var(--accent-yellow));
+            border-radius: 4px;
+            z-index: 10;
+        }
+        .flame {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 20px;
+            background: radial-gradient(circle, #FF7F50, #FF4500);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 12px rgba(255,69,0,0.8);
+            animation: flicker 0.1s ease-in-out infinite alternate;
+        }
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(0.9) skewX(-2deg); }
+            100% { transform: translateX(-50%) scale(1.1) skewX(2deg); }
+        }
+        .knife {
+            position: absolute;
+            top: 0;
+            right: -40px;
+            font-size: 3rem;
+            transform: rotate(-45deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+        }
+        .cake-cut-active .cake-3d {
+            transform: scaleX(0.95);
+            background: linear-gradient(to right, #4A2E2B 48%, rgba(255,255,255,0.1) 49%, #4A2E2B 52%);
+        }
+        .cake-cut-active .knife {
+            transform: translate(-90px, 80px) rotate(-90deg);
+            opacity: 0;
+        }
+        .cake-cut-active .flame {
+            display: none !important;
+        }
+
+        /* Wish Popup Note */
+        .wish-banner {
+            max-width: 600px;
+            text-align: center;
+            background: rgba(26,26,26,0.9);
+            border: 1px solid var(--gold);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            margin-top: 20px;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .wish-banner.reveal {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .wish-banner h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-yellow);
+            margin-bottom: 12px;
+        }
+        .wish-banner p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--light-yellow);
+        }
+
+        /* Stage 3: Scrapbook Timeline & Floating Text Loop */
+        #floating-hbd-pool {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+        .pool-text {
+            position: absolute;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            color: rgba(244, 208, 63, 0.12);
+            white-space: nowrap;
+            animation: trackLeft Right linear infinite;
+        }
+        
+        .timeline-container {
+            width: 100%;
+            max-width: 750px;
+            position: relative;
+            margin-top: 50px;
+        }
+        .bike-track {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            border-bottom: 2px dashed var(--warm-brown);
+            margin-bottom: 50px;
+        }
+        #bullet-bike {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-size: 2.8rem;
+            transform: translateX(-50%);
+            transition: left 1s ease-in-out;
+        }
+        .polaroid-card {
+            background: var(--light-yellow);
+            color: #111;
+            padding: 16px 16px 30px 16px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            transform: rotate(-2deg);
+            transition: all 0.5s ease;
+            margin-bottom: 40px;
+        }
+        .polaroid-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--warm-brown);
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 4px;
+        }
+        .polaroid-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .img-placeholder {
+            width: 100%;
+            height: 180px;
+            background: #E5E0D8;
+            border: 1px solid #CCC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+            position: relative;
+            overflow: hidden;
+        }
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+        }
+        .polaroid-description {
+            margin-top: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            text-align: center;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Stage 4: Wrapped Verification & Note */
+        .gift-box-container {
+            cursor: pointer;
+            text-align: center;
+            animation: bounce 2s infinite alternate;
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-15px) scale(1.05); }
+        }
+        .gift-box-icon {
+            font-size: 6rem;
+            filter: drop-shadow(0 10px 15px rgba(212,175,55,0.4));
+        }
+        .gift-box-container p {
+            font-family: 'Cinzel', serif;
+            margin-top: 15px;
+            letter-spacing: 1px;
+            color: var(--accent-yellow);
+        }
+
+        /* Verification Overlay Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(13,13,13,0.95);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .security-card {
+            background: var(--card-black);
+            border: 2px solid var(--warm-brown);
+            padding: 35px;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        }
+        .security-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--light-yellow);
+        }
+        .options-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .option-btn {
+            background: #252525;
+            color: var(--light-yellow);
+            border: 1px solid #444;
+            padding: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .option-btn:hover {
+            background: var(--warm-brown);
+            border-color: var(--gold);
+        }
+        .security-feedback {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            min-height: 24px;
+            color: #F44336;
+        }
+
+        /* Final Unfolded Note Letter */
+        .letter-container {
+            max-width: 600px;
+            width: 100%;
+            background: #FDFBF7;
+            color: #2C1E18;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            border-left: 8px solid var(--warm-brown);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            position: relative;
+        }
+        .letter-container.unfolded {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .letter-container h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--warm-brown);
+        }
+        .letter-body {
+            font-size: 1.05rem;
+            white-space: pre-line;
+            margin-bottom: 25px;
+        }
+        .letter-footer {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            text-align: right;
+            color: var(--warm-brown);
+        }
+
+        /* Responsive Matrix */
+        @media (max-width: 768px) {
+            #relationship-tracker {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+                padding: 8px 12px;
+            }
+            #relationship-tracker h4 { font-size: 9px; }
+            #relationship-counter { font-size: 12px; }
+            #hbd-announcement { font-size: 3rem; }
+            .polaroid-grid { grid-template-columns: 1fr; }
+            .img-placeholder { height: 150px; }
+            .letter-container { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div id="floating-hbd-pool"></div>
+
+    <div id="relationship-tracker">
+        <h4>OUR JOURNEY LIVE TICKER</h4>
+        <div id="relationship-counter">00y 00m 00d 00h 00m 00s</div>
+    </div>
+
+    <audio id="audio-romantic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    <audio id="audio-birthday" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+        </audio>
+    <audio id="audio-buzzer">
+        <source src="https://actions.google.com/sounds/v1/cartoon/slide_whistle_to_drum_pop.ogg" type="audio/ogg">
+    </audio>
+    <audio id="audio-letter" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="stage-countdown" class="stage">
+        <h1>COUNTING DOWN TO KANGAROO'S BIG DAY 🦘</h1>
+        <div class="countdown-container">
+            <div class="countdown-box"><span id="days">00</span><label>Days</label></div>
+            <div class="countdown-box"><span id="hours">00</span><label>Hours</label></div>
+            <div class="countdown-box"><span id="minutes">00</span><label>Mins</label></div>
+            <div class="countdown-box"><span id="seconds">00</span><label>Secs</label></div>
+        </div>
+        <button class="btn-premium" onclick="initiateExperience()">Enter Her Kingdom</button>
+    </div>
+
+    <div id="stage-celebration" class="stage hidden">
+        <div id="hbd-announcement">Happy 18th Birthday, my Kangaroo! 🦘</div>
+        
+        <div class="cake-wrapper" id="cake-arena">
+            <div class="table-surface"></div>
+            <div class="cake-3d">
+                <div class="candle"><div class="flame"></div></div>
+            </div>
+            <div class="knife">🔪</div>
+        </div>
+
+        <button id="cake-cut-btn" class="btn-premium" onclick="executeCakeCut()">Cut the Chocolate Cake</button>
+
+        <div id="wish-banner-box" class="wish-banner">
+            <h3>Congratulations on turning 18! 🌟</h3>
+            <p>"Happy 18th Birthday! Finally, ab tum bullet chalane ke liye driving licence le sakti ho! 🏍️✨"</p>
+            <button class="btn-premium" onclick="transitionToTimeline()">Let's Revisit Our Time 🏍️</button>
+        </div>
+    </div>
+
+    <div id="stage-timeline" class="stage hidden">
+        <div class="timeline-container">
+            <div class="bike-track">
+                <div id="bullet-bike">🏍️</div>
+            </div>
+
+            <div class="polaroid-card" id="card-2021">
+                <h3>2021 — Where It All Began</h3>
+                <div class="polaroid-grid">
+                    <div class="img-placeholder">
+                        <img src="" alt="Ambedkar Chowk Pandal Moment 1">
+                        <span>[Image 1: Ambedkar Chowk]</span>
+                    </div>
+                    <div class="img-placeholder">
+                        <img src="" alt="Mahaashtami Puja Memory">
+                        <span>[Image 2: Durga Puja Entry]</span>
+                    </div>
+                </div>
+                <div class="polaroid-description">Ambedkar Chowk ke Durga Puja Pandal me, Mahaashtami ke us paavan din hamari pehli mulaqat. ✨</div>
+            </div>
+
+            <div class="polaroid-card" id="card-2022" style="transform: rotate(3deg);">
+                <h3>2022 — Growing Closer</h3>
+                <div class="polaroid-grid">
+                    <div class="img-placeholder">
+                        <img src="" alt="2022 Memory 1">
+                        <span>[Image 3: Memory 2022 A]</span>
+                    </div>
+                    <div class="img-placeholder">
+                        <img src="" alt="2022 Memory 2">
+                        <span>[Image 4: Memory 2022 B]</span>
+                    </div>
+                </div>
+                <div class="polaroid-description">Ek pura saal dosti, haseen shararatein aur ek dusre ko thoda aur samajhne ka safar.</div>
+            </div>
+
+            <div class="polaroid-card" id="card-2023" style="transform: rotate(-1deg);">
+                <h3>2023 — Unstoppable Together</h3>
+                <div class="polaroid-grid">
+                    <div class="img-placeholder">
+                        <img src="" alt="2023 Memory 1">
+                        <span>[Image 5: Memory 2023 A]</span>
+                    </div>
+                    <div class="img-placeholder">
+                        <img src="" alt="2023 Memory 2">
+                        <span>[Image 6: Memory 2023 B]</span>
+                    </div>
+                </div>
+                <div class="polaroid-description">Shared laughs, big dreams, and creating milestones that became unforgettable chapters.</div>
+            </div>
+
+            <div class="polaroid-card" id="card-2024" style="transform: rotate(2deg);">
+                <h3>2024 — Deepening The Bond</h3>
+                <div class="polaroid-grid">
+                    <div class="img-placeholder">
+                        <img src="" alt="2024 Memory 1">
+                        <span>[Image 7: Memory 2024 A]</span>
+                    </div>
+                    <div class="img-placeholder">
+                        <img src="" alt="2024 Memory 2">
+                        <span>[Image 8: Memory 2024 B]</span>
+                    </div>
+                </div>
+                <div class="polaroid-description">Har utaar-chadhaav ke sath hamara rishta thick and thin se guzarte hue aur majboot hua. ❤️</div>
+            </div>
+
+            <div class="polaroid-card" id="card-2025" style="transform: rotate(-3deg);">
+                <h3>2025 — Solitude & Support</h3>
+                <div class="polaroid-grid">
+                    <div class="img-placeholder">
+                        <img src="" alt="2025 Memory 1">
+                        <span>[Image 9: Memory 2025 A]</span>
+                    </div>
+                    <div class="img-placeholder">
+                        <img src="" alt="2025 Memory 2">
+                        <span>[Image 10: Memory 2025 B]</span>
+                    </div>
+                </div>
+                <div class="polaroid-description">Ek bemisaal saal jahan tumne har mushkil me mera sath diya aur sahara bani.</div>
+            </div>
+
+            <div class="polaroid-card" id="card-2026" style="transform: rotate(1deg);">
+                <h3>2026 — Entering A New Era</h3>
+                <div class="polaroid-grid">
+                    <div class="img-placeholder">
+                        <img src="" alt="2026 Memory 1">
+                        <span>[Image 11: New Chapter A]</span>
+                    </div>
+                    <div class="img-placeholder">
+                        <img src="" alt="2026 Memory 2">
+                        <span>[Image 12: New Chapter B]</span>
+                    </div>
+                </div>
+                <div class="polaroid-description">Aur ab tum 18 ki ho chuki ho... Kadam rakhte hain hamari zindagi ke ek naye daur me! 🚀</div>
+            </div>
+
+        </div>
+        <button class="btn-premium" onclick="revealGiftStage()">Claim Your Final Surprise Gift 🎁</button>
+    </div>
+
+    <div id="stage-gift" class="stage hidden">
+        <div class="gift-box-container" onclick="openVerificationModal()">
+            <div class="gift-box-icon">🎁</div>
+            <p>Your Special Letter is Locked Inside. Tap to Unlock.</p>
+        </div>
+
+        <div id="security-modal" class="modal-overlay">
+            <div class="security-card">
+                <h3>🔒 Memory Challenge for Kangaroo</h3>
+                <p style="margin-bottom: 20px; color: #ccc;">Hum pehli baar kaha mile the?</p>
+                <div class="options-wrapper">
+                    <button class="option-btn" onclick="verifyChallengeAnswer(true)">Ambedkar Chowk</button>
+                    <button class="option-btn" onclick="verifyChallengeAnswer(false)">Buxar</button>
+                </div>
+                <div id="security-error-msg" class="security-feedback"></div>
+            </div>
+        </div>
+
+        <div id="final-letter" class="letter-container">
+            <h2>Mere Pyare Kangaroo, 🦘</h2>
+            <div class="letter-body">
+                13 October 2021 ko Durga Puja ke us pandal se lekar aaj jab tum ek adult ban gayi ho (legal machine chalane ke liye eligible driving licensee!), hamari har ek memory mere dil ke sabse kareeb hai. 
+
+                Tumhara ye favorite black, yellow aur brown color se saja chhota sa sansar hamari har khushi aur support ka gawah hai. Tum sirf meri girlfriend nahi, mera sabse accha hissa ho. Humesha aise hi rehna, haste rehna, aur haan—ab taiyar ho jao, tum jald hi bullet ride par chashma laga kar ghumne wali ho!
+
+                Wishing you all the happiness, growth, and love in the world on your 18th Milestone!
+            </div>
+            <div class="letter-footer">
+                Yours forever,
+                Vinayak
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        /*********************************************************************
+         * CONFIGURATION MATRIX & STATE ENGINE
+         *********************************************************************/
+        // DEBUG FEATURE FLAG: Switch to true to bypass standard clock lockouts for active component design testing.
+        const FORCE_BIRTHDAY = false; 
+
+        // TARGET TIMESTAMPS (IST Alignment handled with standard UTC offset operations)
+        const TARGET_BIRTHDAY = new Date('2026-06-28T00:00:00+05:30'); 
+        const RELATIONSHIP_START = new Date('2021-10-13T18:00:00+05:30'); // Approximate evening time for Mahaashtami pandal
+
+        // System Audio Cache pointers
+        const audioRomantic = document.getElementById('audio-romantic');
+        const audioBirthday = document.getElementById('audio-birthday');
+        const audioBuzzer = document.getElementById('audio-buzzer');
+        const audioLetter = document.getElementById('audio-letter');
+
+        // Core Ecosystem canvas engine references
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+        let firecrackersArray = [];
+        let useFirecrackers = false;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        /*********************************************************************
+         * LIVE INTERVAL COUNTERS MANAGEMENT SYSTEM
+         *********************************************************************/
+        function updateAllClocks() {
+            const now = new Date();
+            
+            // 1. Permanent Continuous Relationship Journey Chronometer
+            const diffRel = now - RELATIONSHIP_START;
+            if (diffRel > 0) {
+                const totalSecs = Math.floor(diffRel / 1000);
+                const totalMins = Math.floor(totalSecs / 60);
+                const totalHours = Math.floor(totalMins / 60);
+                const totalDays = Math.floor(totalHours / 24);
+
+                // Basic calendar logic approximation for presentation uniformity
+                const years = Math.floor(totalDays / 365.25);
+                const remainingDays = Math.floor(totalDays % 365.25);
+                const displayHours = totalHours % 24;
+                const displayMins = totalMins % 60;
+                const displaySecs = totalSecs % 60;
+
+                document.getElementById('relationship-counter').innerHTML = 
+                    `${years}y ${remainingDays}d ${displayHours.toString().padStart(2,'0')}h ${displayMins.toString().padStart(2,'0')}m ${displaySecs.toString().padStart(2,'0')}s`;
+            }
+
+            // 2. Main Target Birthday Counting Node
+            const diffBday = TARGET_BIRTHDAY - now;
+            if (!FORCE_BIRTHDAY && diffBday > 0) {
+                const d = Math.floor(diffBday / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diffBday % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diffBday % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diffBday % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = d.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            } else {
+                // Time-Trigger event state achieved
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+            }
+        }
+        setInterval(updateAllClocks, 1000);
+        updateAllClocks();
+
+        /*********************************************************************
+         * TRANSITIONAL FLUID PIPELINES (THE NAVIGATION FLOWS)
+         *********************************************************************/
+        function initiateExperience() {
+            const now = new Date();
+            // Evaluate timeline lock criteria
+            if (FORCE_BIRTHDAY || (TARGET_BIRTHDAY - now <= 0)) {
+                // Launch straight into Midnight Surprise Matrix
+                transitionStage('stage-countdown', 'stage-celebration');
+                audioBirthday.play().catch(e => console.log("Audio play deferred awaiting interaction context."));
+            } else {
+                // Pre-Birthday Guard Rails Active
+                audioRomantic.play().catch(e => console.log("Audio play deferred."));
+                alert("Sabr ka phal meetha hota hai! Countdown khatam hone ka intezaar karo. 😉");
+            }
+        }
+
+        function transitionStage(currentId, nextId) {
+            const curr = document.getElementById(currentId);
+            const next = document.getElementById(nextId);
+            
+            curr.style.opacity = '0';
+            setTimeout(() => {
+                curr.classList.add('hidden');
+                next.classList.remove('hidden');
+                setTimeout(() => {
+                    next.style.opacity = '1';
+                }, 50);
+            }, 1000);
+        }
+
+        /*********************************************************************
+         * STAGE 2 ENGINE: CAKE INTERACTION & FIREWORKS MATRIX
+         *********************************************************************/
+        function executeCakeCut() {
+            const arena = document.getElementById('cake-arena');
+            const cutBtn = document.getElementById('cake-cut-btn');
+            const wishBox = document.getElementById('wish-banner-box');
+
+            arena.classList.add('cake-cut-active');
+            cutBtn.style.display = 'none';
+
+            // Engage Firecracker Simulation engine layer
+            useFirecrackers = true;
+            generateFirecrackerExplosion();
+
+            // Spawn floating text elements inside display view pool
+            spawnFloatingHbdTextsLoop();
+
+            // Slide open emotional wish card container
+            setTimeout(() => {
+                wishBox.classList.add('reveal');
+            }, 600);
+        }
+
+        /*********************************************************************
+         * STAGE 3 ENGINE: THE MOTORCYCLE CHRONOLOGY SCROLLWAYS
+         *********************************************************************/
+        function transitionToTimeline() {
+            // Reconfigure sound space context
+            audioBirthday.pause();
+            audioRomantic.play().catch(e => console.log(e));
+
+            transitionStage('stage-celebration', 'stage-timeline');
+            
+            // Initialize animated progress vector of the Bullet motorcycle engine
+            setTimeout(() => {
+                const bike = document.getElementById('bullet-bike');
+                const track = document.querySelector('.bike-track');
+                
+                window.addEventListener('scroll', () => {
+                    const st = window.scrollY || document.documentElement.scrollTop;
+                    const sh = document.documentElement.scrollHeight - window.innerHeight;
+                    const percent = (st / sh) * 100;
+                    // Keep bike bounds locked between 0 and 100 percent map spaces safely
+                    bike.style.left = `${Math.min(Math.max(percent, 0), 100)}%`;
+                });
+            }, 1100);
+        }
+
+        function spawnFloatingHbdTextsLoop() {
+            const container = document.getElementById('floating-hbd-pool');
+            const phrases = ["Happy Birthday", "18 Years Old", "Kangaroo 🦘", "Driving Licence Ready 🏍️", "Love You"];
+            
+            setInterval(() => {
+                if(!useFirecrackers) return; // Keep bound cleanly with active celebratory stages
+                const txt = document.createElement('div');
+                txt.classList.add('pool-text');
+                txt.innerText = phrases[Math.floor(Math.random() * phrases.length)];
+                txt.style.top = `${Math.random() * 90}vh`;
+                txt.style.fontSize = `${16 + Math.random() * 24}px`;
+                txt.style.animationDuration = `${5 + Math.random() * 10}s`;
+                
+                // Horizontal motion mapping random starting paths
+                if(Math.random() > 0.5) {
+                    txt.style.left = '-200px';
+                    txt.style.transform = 'translateX(0)';
+                    txt.animate([
+                        { left: '-200px' },
+                        { left: '100vw' }
+                    ], { duration: 6000 + Math.random()*4000, iterations: 1 });
+                } else {
+                    txt.style.right = '-200px';
+                    txt.animate([
+                        { right: '-200px' },
+                        { right: '100vw' }
+                    ], { duration: 6000 + Math.random()*4000, iterations: 1 });
+                }
+
+                container.appendChild(txt);
+                setTimeout(() => txt.remove(), 10000);
+            }, 800);
+        }
+
+        /*********************************************************************
+         * STAGE 4 ENGINE: SECURE WRAPPER VERIFICATION CRYPT
+         *********************************************************************/
+        function revealGiftStage() {
+            transitionStage('stage-timeline', 'stage-gift');
+        }
+
+        function openVerificationModal() {
+            document.getElementById('security-modal').classList.add('active');
+        }
+
+        function verifyChallengeAnswer(isCorrect) {
+            const errorElement = document.getElementById('security-error-msg');
+            if(isCorrect) {
+                // Tear down lock arrays and present handwritten asset space
+                document.getElementById('security-modal').classList.remove('active');
+                document.querySelector('.gift-box-container').style.display = 'none';
+                
+                audioRomantic.pause();
+                audioLetter.play().catch(e => console.log(e));
+
+                const letter = document.getElementById('final-letter');
+                letter.style.display = 'block';
+                setTimeout(() => {
+                    letter.classList.add('unfolded');
+                    // Smoothly scroll down view screen to capture full letter presentation
+                    letter.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else {
+                // Engage fault routine structures
+                audioBuzzer.play().catch(e => console.log(e));
+                errorElement.innerText = "Kya tumhe ek jagah tak yaad nahi? 🥺 Dobara try karo!";
+            }
+        }
+
+        /*********************************************************************
+         * MATH GRAPHICS FOUNDATION LAYER: VISUAL PARTICLE CANVAS SIMULATION
+         *********************************************************************/
+        class Particle {
+            constructor(isCelebration) {
+                this.isCelebration = isCelebration;
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = this.isCelebration ? canvas.height + 20 : Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = this.isCelebration ? -(Math.random() * 3 + 2) : -(Math.random() * 0.5 + 0.2);
+                // Cycle between Light Yellow, Warm Gold accents and Soft Browns
+                const colors = ['#FEF9E7', '#F4D03F', '#D4AF37', '#5C4033'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.alpha = Math.random() * 0.5 + 0.3;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        class Firecracker {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = Math.random() * 3 + 1;
+                this.angle = Math.random() * Math.PI * 2;
+                this.speed = Math.random() * 6 + 4;
+                this.friction = 0.95;
+                this.gravity = 0.12;
+                this.hue = Math.random() * 50 + 20; // Generate sparks matching color matrices safely
+                this.alpha = 1;
+                this.decay = Math.random() * 0.02 + 0.015;
+            }
+            update() {
+                this.speed *= this.friction;
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed + this.gravity;
+                this.alpha -= this.decay;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalCompositeOperation = 'screen';
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = `hsla(${this.hue}, 80%, 60%, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function generateFirecrackerExplosion() {
+            const burstCount = 6;
+            for(let i=0; i<burstCount; i++){
+                setTimeout(() => {
+                    const targetX = Math.random() * canvas.width;
+                    const targetY = Math.random() * (canvas.height * 0.6);
+                    for (let p = 0; p < 60; p++) {
+                        firecrackersArray.push(new Firecracker(targetX, targetY));
+                    }
+                }, i * 400);
+            }
+        }
+
+        // Initialize background ambient ambient particle structures
+        for (let i = 0; i < 65; i++) {
+            particlesArray.push(new Particle(false));
+        }
+
+        function animateEngineLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 1. Process ambient background array
+            particlesArray.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // 2. Process burst celebration structures if active state flag is true
+            if (useFirecrackers) {
+                if (Math.random() < 0.03) { // Small continuous explosions over time loop
+                    const rx = Math.random() * canvas.width;
+                    const ry = Math.random() * (canvas.height * 0.5);
+                    for(let k=0; k<25; k++) firecrackersArray.push(new Firecracker(rx, ry));
+                }
+                
+                for (let i = firecrackersArray.length - 1; i >= 0; i--) {
+                    firecrackersArray[i].update();
+                    if (firecrackersArray[i].alpha <= 0) {
+                        firecrackersArray.splice(i, 1);
+                    } else {
+                        firecrackersArray[i].draw();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateEngineLoop);
+        }
+        animateEngineLoop();
+    </script>
+</body>
+</html>
