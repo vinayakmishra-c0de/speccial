@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 18th Birthday, Kangaroo! 🦘</title>
+    <title>Happy 18th Birthday, Kangaroo! 🦘 (Inspect Mode)</title>
+    <!-- Google Fonts for elegant typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -112,45 +113,6 @@
             transform: translateY(-3px) scale(1.03);
             box-shadow: 0 10px 25px rgba(212,175,55,0.3);
             background: linear-gradient(135deg, #6E4D3E, var(--warm-brown));
-        }
-
-        /* Stage 1: Initial Birthday Countdown */
-        #stage-countdown h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            letter-spacing: 4px;
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--light-yellow);
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-        .countdown-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .countdown-box {
-            background: var(--card-black);
-            border: 1px solid rgba(214,175,87,0.3);
-            padding: 20px;
-            border-radius: 15px;
-            min-width: 100px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .countdown-box span {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: 600;
-            font-family: monospace;
-            color: var(--accent-yellow);
-        }
-        .countdown-box label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #aaa;
         }
 
         /* Stage 2: Birthday Celebration Reveal & Cake */
@@ -303,7 +265,6 @@
             font-weight: bold;
             color: rgba(244, 208, 63, 0.12);
             white-space: nowrap;
-            animation: trackLeft Right linear infinite;
         }
         
         .timeline-container {
@@ -519,21 +480,25 @@
 </head>
 <body>
 
+    <!-- Particle Background Ecosystem -->
     <canvas id="particle-canvas"></canvas>
 
+    <!-- Floating Background Text Loop Pool (Populated by JS during phase 3) -->
     <div id="floating-hbd-pool"></div>
 
+    <!-- Permanent Relationship Counter Alignment -->
     <div id="relationship-tracker">
         <h4>OUR JOURNEY LIVE TICKER</h4>
         <div id="relationship-counter">00y 00m 00d 00h 00m 00s</div>
     </div>
 
+    <!-- AUDIO INFRASTRUCTURE PLACEHOLDERS -->
     <audio id="audio-romantic" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        </audio>
+    </audio>
     <audio id="audio-birthday" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-        </audio>
+    </audio>
     <audio id="audio-buzzer">
         <source src="https://actions.google.com/sounds/v1/cartoon/slide_whistle_to_drum_pop.ogg" type="audio/ogg">
     </audio>
@@ -541,18 +506,8 @@
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="stage-countdown" class="stage">
-        <h1>COUNTING DOWN TO KANGAROO'S BIG DAY 🦘</h1>
-        <div class="countdown-container">
-            <div class="countdown-box"><span id="days">00</span><label>Days</label></div>
-            <div class="countdown-box"><span id="hours">00</span><label>Hours</label></div>
-            <div class="countdown-box"><span id="minutes">00</span><label>Mins</label></div>
-            <div class="countdown-box"><span id="seconds">00</span><label>Secs</label></div>
-        </div>
-        <button class="btn-premium" onclick="initiateExperience()">Enter Her Kingdom</button>
-    </div>
-
-    <div id="stage-celebration" class="stage hidden">
+    <!-- STAGE 2: CELEBRATION CEREMONY & CAKE CUTTING (STARTING VIEW BYPASSED) -->
+    <div id="stage-celebration" class="stage">
         <div id="hbd-announcement">Happy 18th Birthday, my Kangaroo! 🦘</div>
         
         <div class="cake-wrapper" id="cake-arena">
@@ -572,12 +527,14 @@
         </div>
     </div>
 
+    <!-- STAGE 3: THE BULLET TIMELINE SCRAPBOOK -->
     <div id="stage-timeline" class="stage hidden">
         <div class="timeline-container">
             <div class="bike-track">
                 <div id="bullet-bike">🏍️</div>
             </div>
 
+            <!-- 2021 CHAPTER -->
             <div class="polaroid-card" id="card-2021">
                 <h3>2021 — Where It All Began</h3>
                 <div class="polaroid-grid">
@@ -593,6 +550,7 @@
                 <div class="polaroid-description">Ambedkar Chowk ke Durga Puja Pandal me, Mahaashtami ke us paavan din hamari pehli mulaqat. ✨</div>
             </div>
 
+            <!-- 2022 CHAPTER -->
             <div class="polaroid-card" id="card-2022" style="transform: rotate(3deg);">
                 <h3>2022 — Growing Closer</h3>
                 <div class="polaroid-grid">
@@ -608,6 +566,7 @@
                 <div class="polaroid-description">Ek pura saal dosti, haseen shararatein aur ek dusre ko thoda aur samajhne ka safar.</div>
             </div>
 
+            <!-- 2023 CHAPTER -->
             <div class="polaroid-card" id="card-2023" style="transform: rotate(-1deg);">
                 <h3>2023 — Unstoppable Together</h3>
                 <div class="polaroid-grid">
@@ -623,6 +582,7 @@
                 <div class="polaroid-description">Shared laughs, big dreams, and creating milestones that became unforgettable chapters.</div>
             </div>
 
+            <!-- 2024 CHAPTER -->
             <div class="polaroid-card" id="card-2024" style="transform: rotate(2deg);">
                 <h3>2024 — Deepening The Bond</h3>
                 <div class="polaroid-grid">
@@ -638,6 +598,7 @@
                 <div class="polaroid-description">Har utaar-chadhaav ke sath hamara rishta thick and thin se guzarte hue aur majboot hua. ❤️</div>
             </div>
 
+            <!-- 2025 CHAPTER -->
             <div class="polaroid-card" id="card-2025" style="transform: rotate(-3deg);">
                 <h3>2025 — Solitude & Support</h3>
                 <div class="polaroid-grid">
@@ -653,6 +614,7 @@
                 <div class="polaroid-description">Ek bemisaal saal jahan tumne har mushkil me mera sath diya aur sahara bani.</div>
             </div>
 
+            <!-- 2026 CHAPTER -->
             <div class="polaroid-card" id="card-2026" style="transform: rotate(1deg);">
                 <h3>2026 — Entering A New Era</h3>
                 <div class="polaroid-grid">
@@ -672,12 +634,14 @@
         <button class="btn-premium" onclick="revealGiftStage()">Claim Your Final Surprise Gift 🎁</button>
     </div>
 
+    <!-- STAGE 4: WRAPPED GIFT AND HANDWRITTEN NOTE EXTRACTION -->
     <div id="stage-gift" class="stage hidden">
         <div class="gift-box-container" onclick="openVerificationModal()">
             <div class="gift-box-icon">🎁</div>
             <p>Your Special Letter is Locked Inside. Tap to Unlock.</p>
         </div>
 
+        <!-- The Verification Popup Interface -->
         <div id="security-modal" class="modal-overlay">
             <div class="security-card">
                 <h3>🔒 Memory Challenge for Kangaroo</h3>
@@ -690,7 +654,8 @@
             </div>
         </div>
 
-        <div id="final-letter" class="letter-container">
+        <!-- Final Handwritten Paper Sheet Display -->
+        <div id="final-letter" class="letter-container" style="display: none;">
             <h2>Mere Pyare Kangaroo, 🦘</h2>
             <div class="letter-body">
                 13 October 2021 ko Durga Puja ke us pandal se lekar aaj jab tum ek adult ban gayi ho (legal machine chalane ke liye eligible driving licensee!), hamari har ek memory mere dil ke sabse kareeb hai. 
@@ -711,20 +676,13 @@
         /*********************************************************************
          * CONFIGURATION MATRIX & STATE ENGINE
          *********************************************************************/
-        // DEBUG FEATURE FLAG: Switch to true to bypass standard clock lockouts for active component design testing.
-        const FORCE_BIRTHDAY = false; 
+        const RELATIONSHIP_START = new Date('2021-10-13T18:00:00+05:30'); 
 
-        // TARGET TIMESTAMPS (IST Alignment handled with standard UTC offset operations)
-        const TARGET_BIRTHDAY = new Date('2026-06-28T00:00:00+05:30'); 
-        const RELATIONSHIP_START = new Date('2021-10-13T18:00:00+05:30'); // Approximate evening time for Mahaashtami pandal
-
-        // System Audio Cache pointers
         const audioRomantic = document.getElementById('audio-romantic');
         const audioBirthday = document.getElementById('audio-birthday');
         const audioBuzzer = document.getElementById('audio-buzzer');
         const audioLetter = document.getElementById('audio-letter');
 
-        // Core Ecosystem canvas engine references
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
@@ -743,8 +701,6 @@
          *********************************************************************/
         function updateAllClocks() {
             const now = new Date();
-            
-            // 1. Permanent Continuous Relationship Journey Chronometer
             const diffRel = now - RELATIONSHIP_START;
             if (diffRel > 0) {
                 const totalSecs = Math.floor(diffRel / 1000);
@@ -752,7 +708,6 @@
                 const totalHours = Math.floor(totalMins / 60);
                 const totalDays = Math.floor(totalHours / 24);
 
-                // Basic calendar logic approximation for presentation uniformity
                 const years = Math.floor(totalDays / 365.25);
                 const remainingDays = Math.floor(totalDays % 365.25);
                 const displayHours = totalHours % 24;
@@ -762,47 +717,20 @@
                 document.getElementById('relationship-counter').innerHTML = 
                     `${years}y ${remainingDays}d ${displayHours.toString().padStart(2,'0')}h ${displayMins.toString().padStart(2,'0')}m ${displaySecs.toString().padStart(2,'0')}s`;
             }
-
-            // 2. Main Target Birthday Counting Node
-            const diffBday = TARGET_BIRTHDAY - now;
-            if (!FORCE_BIRTHDAY && diffBday > 0) {
-                const d = Math.floor(diffBday / (1000 * 60 * 60 * 24));
-                const h = Math.floor((diffBday % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((diffBday % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diffBday % (1000 * 60)) / 1000);
-
-                document.getElementById('days').innerText = d.toString().padStart(2, '0');
-                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
-            } else {
-                // Time-Trigger event state achieved
-                document.getElementById('days').innerText = "00";
-                document.getElementById('hours').innerText = "00";
-                document.getElementById('minutes').innerText = "00";
-                document.getElementById('seconds').innerText = "00";
-            }
         }
         setInterval(updateAllClocks, 1000);
         updateAllClocks();
 
-        /*********************************************************************
-         * TRANSITIONAL FLUID PIPELINES (THE NAVIGATION FLOWS)
-         *********************************************************************/
-        function initiateExperience() {
-            const now = new Date();
-            // Evaluate timeline lock criteria
-            if (FORCE_BIRTHDAY || (TARGET_BIRTHDAY - now <= 0)) {
-                // Launch straight into Midnight Surprise Matrix
-                transitionStage('stage-countdown', 'stage-celebration');
-                audioBirthday.play().catch(e => console.log("Audio play deferred awaiting interaction context."));
-            } else {
-                // Pre-Birthday Guard Rails Active
-                audioRomantic.play().catch(e => console.log("Audio play deferred."));
-                alert("Sabr ka phal meetha hota hai! Countdown khatam hone ka intezaar karo. 😉");
+        // Autoplay music context warning handle
+        window.addEventListener('click', () => {
+            if(document.getElementById('stage-timeline').classList.contains('hidden')) {
+                audioBirthday.play().catch(e => {});
             }
-        }
+        }, { once: true });
 
+        /*********************************************************************
+         * TRANSITIONAL FLUID PIPELINES
+         *********************************************************************/
         function transitionStage(currentId, nextId) {
             const curr = document.getElementById(currentId);
             const next = document.getElementById(nextId);
@@ -818,7 +746,7 @@
         }
 
         /*********************************************************************
-         * STAGE 2 ENGINE: CAKE INTERACTION & FIREWORKS MATRIX
+         * STAGE 2 ENGINE: CAKE INTERACTION & FIREWORKS
          *********************************************************************/
         function executeCakeCut() {
             const arena = document.getElementById('cake-arena');
@@ -828,39 +756,30 @@
             arena.classList.add('cake-cut-active');
             cutBtn.style.display = 'none';
 
-            // Engage Firecracker Simulation engine layer
             useFirecrackers = true;
             generateFirecrackerExplosion();
-
-            // Spawn floating text elements inside display view pool
             spawnFloatingHbdTextsLoop();
 
-            // Slide open emotional wish card container
             setTimeout(() => {
                 wishBox.classList.add('reveal');
             }, 600);
         }
 
         /*********************************************************************
-         * STAGE 3 ENGINE: THE MOTORCYCLE CHRONOLOGY SCROLLWAYS
+         * STAGE 3 ENGINE: THE MOTORCYCLE CHRONOLOGY
          *********************************************************************/
         function transitionToTimeline() {
-            // Reconfigure sound space context
             audioBirthday.pause();
-            audioRomantic.play().catch(e => console.log(e));
+            audioRomantic.play().catch(e => {});
 
             transitionStage('stage-celebration', 'stage-timeline');
             
-            // Initialize animated progress vector of the Bullet motorcycle engine
             setTimeout(() => {
                 const bike = document.getElementById('bullet-bike');
-                const track = document.querySelector('.bike-track');
-                
                 window.addEventListener('scroll', () => {
                     const st = window.scrollY || document.documentElement.scrollTop;
                     const sh = document.documentElement.scrollHeight - window.innerHeight;
                     const percent = (st / sh) * 100;
-                    // Keep bike bounds locked between 0 and 100 percent map spaces safely
                     bike.style.left = `${Math.min(Math.max(percent, 0), 100)}%`;
                 });
             }, 1100);
@@ -871,28 +790,19 @@
             const phrases = ["Happy Birthday", "18 Years Old", "Kangaroo 🦘", "Driving Licence Ready 🏍️", "Love You"];
             
             setInterval(() => {
-                if(!useFirecrackers) return; // Keep bound cleanly with active celebratory stages
+                if(!useFirecrackers) return;
                 const txt = document.createElement('div');
                 txt.classList.add('pool-text');
                 txt.innerText = phrases[Math.floor(Math.random() * phrases.length)];
                 txt.style.top = `${Math.random() * 90}vh`;
                 txt.style.fontSize = `${16 + Math.random() * 24}px`;
-                txt.style.animationDuration = `${5 + Math.random() * 10}s`;
                 
-                // Horizontal motion mapping random starting paths
                 if(Math.random() > 0.5) {
                     txt.style.left = '-200px';
-                    txt.style.transform = 'translateX(0)';
-                    txt.animate([
-                        { left: '-200px' },
-                        { left: '100vw' }
-                    ], { duration: 6000 + Math.random()*4000, iterations: 1 });
+                    txt.animate([{ left: '-200px' }, { left: '100vw' }], { duration: 6000 + Math.random()*4000, iterations: 1 });
                 } else {
                     txt.style.right = '-200px';
-                    txt.animate([
-                        { right: '-200px' },
-                        { right: '100vw' }
-                    ], { duration: 6000 + Math.random()*4000, iterations: 1 });
+                    txt.animate([{ right: '-200px' }, { right: '100vw' }], { duration: 6000 + Math.random()*4000, iterations: 1 });
                 }
 
                 container.appendChild(txt);
@@ -901,11 +811,15 @@
         }
 
         /*********************************************************************
-         * STAGE 4 ENGINE: SECURE WRAPPER VERIFICATION CRYPT
+         * STAGE 4 ENGINE: SECURE WRAPPER VERIFICATION
          *********************************************************************/
         function revealGiftStage() {
             transitionStage('stage-timeline', 'stage-gift');
         }
+
+        document.getElementById('stage-timeline').addEventListener('scroll', () => {
+             // Sync code structure hooks if required
+        });
 
         function openVerificationModal() {
             document.getElementById('security-modal').classList.add('active');
@@ -914,42 +828,37 @@
         function verifyChallengeAnswer(isCorrect) {
             const errorElement = document.getElementById('security-error-msg');
             if(isCorrect) {
-                // Tear down lock arrays and present handwritten asset space
                 document.getElementById('security-modal').classList.remove('active');
                 document.querySelector('.gift-box-container').style.display = 'none';
                 
                 audioRomantic.pause();
-                audioLetter.play().catch(e => console.log(e));
+                audioLetter.play().catch(e => {});
 
                 const letter = document.getElementById('final-letter');
                 letter.style.display = 'block';
                 setTimeout(() => {
                     letter.classList.add('unfolded');
-                    // Smoothly scroll down view screen to capture full letter presentation
                     letter.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
             } else {
-                // Engage fault routine structures
-                audioBuzzer.play().catch(e => console.log(e));
+                audioBuzzer.play().catch(e => {});
                 errorElement.innerText = "Kya tumhe ek jagah tak yaad nahi? 🥺 Dobara try karo!";
             }
         }
 
         /*********************************************************************
-         * MATH GRAPHICS FOUNDATION LAYER: VISUAL PARTICLE CANVAS SIMULATION
+         * MATH GRAPHICS FOUNDATION LAYER: VISUAL PARTICLE CANVAS
          *********************************************************************/
         class Particle {
-            constructor(isCelebration) {
-                this.isCelebration = isCelebration;
+            constructor() {
                 this.reset();
             }
             reset() {
                 this.x = Math.random() * canvas.width;
-                this.y = this.isCelebration ? canvas.height + 20 : Math.random() * canvas.height;
+                this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 3 + 1;
                 this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = this.isCelebration ? -(Math.random() * 3 + 2) : -(Math.random() * 0.5 + 0.2);
-                // Cycle between Light Yellow, Warm Gold accents and Soft Browns
+                this.speedY = -(Math.random() * 0.5 + 0.2);
                 const colors = ['#FEF9E7', '#F4D03F', '#D4AF37', '#5C4033'];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
                 this.alpha = Math.random() * 0.5 + 0.3;
@@ -959,6 +868,7 @@
                 this.y += this.speedY;
                 if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
                     this.reset();
+                    this.y = canvas.height + 10;
                 }
             }
             draw() {
@@ -981,7 +891,7 @@
                 this.speed = Math.random() * 6 + 4;
                 this.friction = 0.95;
                 this.gravity = 0.12;
-                this.hue = Math.random() * 50 + 20; // Generate sparks matching color matrices safely
+                this.hue = Math.random() * 50 + 20; 
                 this.alpha = 1;
                 this.decay = Math.random() * 0.02 + 0.015;
             }
@@ -1016,23 +926,20 @@
             }
         }
 
-        // Initialize background ambient ambient particle structures
         for (let i = 0; i < 65; i++) {
-            particlesArray.push(new Particle(false));
+            particlesArray.push(new Particle());
         }
 
         function animateEngineLoop() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // 1. Process ambient background array
             particlesArray.forEach(p => {
                 p.update();
                 p.draw();
             });
 
-            // 2. Process burst celebration structures if active state flag is true
             if (useFirecrackers) {
-                if (Math.random() < 0.03) { // Small continuous explosions over time loop
+                if (Math.random() < 0.03) {
                     const rx = Math.random() * canvas.width;
                     const ry = Math.random() * (canvas.height * 0.5);
                     for(let k=0; k<25; k++) firecrackersArray.push(new Firecracker(rx, ry));
